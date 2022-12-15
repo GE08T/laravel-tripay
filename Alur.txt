@@ -1,0 +1,15 @@
+## Aplikasi Donasi 
+
+## Alur 
+- Login -> Donasi -> Confirm -> Success
+- Hanya ada frontend tidak ada admin
+
+## Rancangan Database :
+- user
+- transaksi 
+
+## Tool : 
+- laravel
+- vue js
+- tailwind
+- tripay
