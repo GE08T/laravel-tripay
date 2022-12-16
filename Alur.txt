@@ -1,15 +1,12 @@
 ## Aplikasi Donasi 
+Aplikasi ini bertujuan untuk mencoba laravel payment gateway dengan tripay
+sekaligus untuk belajar tentang tailwind
 
 ## Alur 
 - Login -> Donasi -> Confirm -> Success
 - Hanya ada frontend tidak ada admin
 
-## Rancangan Database :
-- user
-- transaksi 
-
 ## Tool : 
 - laravel
-- vue js
 - tailwind
 - tripay
