@@ -13,7 +13,7 @@
 
                 	<div class="mb-6 ">
 
-                    <form method="POST" action="{{ route('transaction') }}">
+                    <form method="POST" action="{{ route('transaction.store') }}">
                     @csrf
                 		<div class="text-xl mb-5">Pilih Nominal :</div>
                 		
@@ -47,7 +47,7 @@
                 		<ul class="grid gap-6 w-full grid-cols-3">
                             @foreach($channels as $channel)
                             <li>
-                                <input type="radio" id="{{ $channel->name }}" name="method" value="{{ $channel->name }}" class="hidden peer" required>
+                                <input type="radio" id="{{ $channel->name }}" name="method" value="{{ $channel->code }}" class="hidden peer" required>
                                 <label for="{{ $channel->name }}" class="inline-flex justify-between items-center p-5 w-full text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 ">                           
                                     <div class="block">
                                         <div class="w-full text-lg font-semibold">{{ ($channel->name) }}</div>

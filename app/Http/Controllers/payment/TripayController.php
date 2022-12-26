@@ -49,7 +49,7 @@ class TripayController extends Controller
 		    'amount'         => $amount,
 		    'customer_name'  => $user->name,
 		    'customer_email' => $user->email,
-		    // 'customer_phone' => '081234567890',
+		    'customer_phone' => '081234567890',
 		    'order_items'    => [
 		        [
 		            // 'sku'         => 'FB-06',
@@ -83,10 +83,39 @@ class TripayController extends Controller
 		$error = curl_error($curl);
 
 		curl_close($curl);
-
+		
 		$response = json_decode($response)->data;
 
 		return $response ?: $error;
 
+    }
+
+    public function detailTransaction($reference)
+    {
+
+		$apiKey = config('tripay.api_key');
+
+		$payload = ['reference'	=> $reference];
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, [
+		    CURLOPT_FRESH_CONNECT  => true,
+		    CURLOPT_URL            => 'https://tripay.co.id/api-sandbox/transaction/detail?'.http_build_query($payload),
+		    CURLOPT_RETURNTRANSFER => true,
+		    CURLOPT_HEADER         => false,
+		    CURLOPT_HTTPHEADER     => ['Authorization: Bearer '.$apiKey],
+		    CURLOPT_FAILONERROR    => false,
+		    CURLOPT_IPRESOLVE      => CURL_IPRESOLVE_V4
+		]);
+
+		$response = curl_exec($curl);
+		$error = curl_error($curl);
+
+		curl_close($curl);
+
+		$response = json_decode($response)->data;
+
+		return $response ?: $error;
     }
 }

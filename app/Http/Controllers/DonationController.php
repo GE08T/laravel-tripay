@@ -31,8 +31,11 @@ class DonationController extends Controller
         ]);
     }
 
-    public function show()
+    public function show($reference)
     {
-        return view('donation.show');
+        $tripay = new TripayController();
+        $detail = $tripay->detailTransaction($reference);
+
+        return view('donation.show', compact('detail'));
     }
 }

@@ -17,11 +17,11 @@ class NominalSeeder extends Seeder
     {
 
         DB::table('nominals')->insert([
-            'harga' => 5000,
+            'harga' => 10000,
         ]);
 
         DB::table('nominals')->insert([
-            'harga' => 10000,
+            'harga' => 15000,
         ]);
 
         DB::table('nominals')->insert([

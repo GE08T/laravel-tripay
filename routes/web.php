@@ -26,8 +26,8 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
 	Route::get('/donation', [DonationController::class, 'donate'])->name('donation');
 
-	Route::get('/transaction', [DonationController::class, 'checkout'])->name('transaction');
-	Route::post('/transaction/{reference}', [DonationController::class, 'show'])->name('transaction.show');
+	Route::get('/transaction/{reference}', [DonationController::class, 'show'])->name('transaction.show');
+	Route::post('/transaction', [DonationController::class, 'store'])->name('transaction.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
