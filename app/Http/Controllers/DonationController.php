@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Nominal;
+use App\Models\Transaction;
 use App\Http\Controllers\payment\TripayController;
 
 class DonationController extends Controller
@@ -20,11 +21,22 @@ class DonationController extends Controller
 
    public function store(Request $request) 
     {
+        // Request Transaction in Tripay
         $method = $request->method;
         $amount = $request->amount;
 
         $tripay = new TripayController();
         $transaction = $tripay->requestTransaction($method, $amount);
+
+        // Create a new data in Transaction Model
+        Transaction::create([
+            'user_id' => auth()->user()->id,
+            'title' => 'Donasi Dari @'.auth()->user()->name,
+            'reference' => $transaction->reference,
+            'merchant_ref' => $transaction->merchant_ref,
+            'total_amount' => $amount,
+            'status' => $transaction->status,
+        ]);
 
         return redirect()->route('transaction.show', [
             'reference' => $transaction->reference,
